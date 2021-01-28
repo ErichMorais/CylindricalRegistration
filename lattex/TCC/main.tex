@@ -1,0 +1,222 @@
+%Shared
+% Exemplo LaTeX de monografia UCS
+%
+% Elaborado com base nas orientações dadas no documento
+% ``GUIA PARA ELABORAÇÃO DE TRABALHOS ACADÊMICOS''
+% disponível no site da biblioteca da Unisinos.
+% http://www.unisinos.br/biblioteca
+%
+% Os elementos textuais abaixo são apresentados na ordem em que devem
+% aparecer no documento.  Repare que nem todos são obrigatórios - isso
+% é devidamente indicado em cada caso.
+% 
+% Comentários abaixo colocados entre aspas (`` '') foram
+% extraídos diretamente do documento da biblioteca.
+%
+% Este documento é de domínio público.
+%
+%\begin{figure}[!htb]
+%	\caption{Exemplo de quantização e amostragem}
+%	\label{fig:ex_quant_amos_img}
+%	\centering
+%	\begin{minipage}{.8\textwidth}
+%   \centering
+%		\includegraphics[width=.5\textwidth]{Figuras/ex_quant_amos_img.jpg}
+%		\fonte{\cite{Zibetti03}.}
+%	\end{minipage}
+%\end{figure}
+
+%=======================================================================
+% Declarações iniciais identificando a classe de documento e
+% selecionando alguns pacotes adicionais.
+%
+% As opções disponíveis (separe-as com vírgulas, sem espaço) são:
+% - twoside: Formata o documento para impressão frente-e-verso
+%   (o default é somente-frente)
+% - english,brazilian,french,german,etc.: idiomas usados no documento.
+%   Deve ser colocado por último o idioma principal.
+%=======================================================================
+
+\documentclass[oneside,english,brazilian]{UCSmonografia}
+\usepackage[utf8]{inputenc} % charset do texto (utf8, latin1, etc.)
+\usepackage[T1]{fontenc} % encoding da fonte (afeta a sep. de sílabas)
+\usepackage{graphicx} % comandos para gráficos e inclusão de figuras
+\usepackage[export]{adjustbox}
+\usepackage{bibentry} % para inserir refs. bib. no meio do texto
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage[section]{placeins}
+\usepackage{multirow}
+\usepackage{appendix}
+\usepackage[autostyle]{csquotes}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{adjustbox}
+\usepackage[graphicx]{realboxes}
+\usepackage{url}
+\usepackage{subfigure}
+
+\usepackage{listings}
+\onehalfspacing
+
+\usepackage{textcase}
+\usepackage{etoolbox}
+
+\urlstyle{same}
+
+\makeatletter
+\patchcmd{\l@section}{#1}{\MakeTextUppercase{#1}}{}{}
+\makeatother
+
+
+% Definindo novas cores
+\definecolor{verde}{rgb}{0.25,0.5,0.35}
+\definecolor{jpurple}{rgb}{0.5,0,0.35}
+\definecolor{darkgreen}{rgb}{0.0, 0.2, 0.13}
+
+\newcommand\MyBox[1]{%
+  \fbox{\parbox[c][1.7cm][c]{1.7cm}{\centering #1}}%
+}
+\newcommand\MyVBox[1]{%
+  \parbox[c][1.7cm][c]{1cm}{\centering\bfseries #1}%
+}  
+\newcommand\MyHBox[2][\dimexpr1.7cm+2\fboxsep\relax]{%
+  \parbox[c][1cm][c]{#1}{\centering\bfseries #2}%
+}  
+\newcommand\MyTBox[3]{%
+  \MyVBox{#1}
+  \MyBox{#2}\hspace*{-\fboxrule}%
+  \MyBox{#3}\hspace*{-\fboxrule}%
+
+}
+
+\usepackage{listings}
+\onehalfspacing
+
+\newcommand{\estiloJava}{
+\lstset{
+    language=Java,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{jpurple}\bfseries,
+    stringstyle=\color{red},
+    commentstyle=\color{verde},
+    morecomment=[s][\color{blue}]{/**}{*/},
+    extendedchars=true,
+    showspaces=false,
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny,
+    breaklines=true,    
+    breakautoindent=true,
+    captionpos=b,
+    xleftmargin=0pt,
+    tabsize=2
+}}
+%\usepackage[portuguese]{babel}
+
+
+\newtheorem{theorem}{Teorema}[chapter]
+\newtheorem{corollary}[theorem]{Corolário}
+\newtheorem{lemma}{Lema}[chapter]
+\newtheorem{definition}{Definição}[chapter]
+\newtheorem{example}{Exemplo}[chapter]
+\newtheorem{remark}{Comentário}
+
+%=======================================================================
+% Escolha do sistema para geração de referências bibliográficas.
+%
+% O default é usar o estilo abnt.bst.  Comente a definição abaixo
+% e descomente a linha seguinte para usar o estilo do ABNTeX (é
+% necessário ter esse pacote instalado).
+%
+% A vantagem do abnt.bst é que ele permite o uso de um arquivo .bib
+% seguindo as orientações tradicionais do BibTeX (veja essas orientações
+% em http://ctan.tug.org/tex-archive/biblio/bibtex/contrib/doc/btxdoc.pdf).
+% Entretanto, o estilo não suporta algumas citações mais exóticas como
+% apud.  Para isso, use o ABNTeX, mas esteja ciente de que muitas de
+% suas referências serão incompatíveis com os estilos tradicionais do
+% BibTeX como plain, alpha, ieeetr, entre outros.
+%=======================================================================
+\abntbst
+%\usepackage[alf]{abntcite}
+%\usepackage[alf]{abntex2cite}
+%=======================================================================
+% Dados gerais sobre o trabalho.
+%=======================================================================
+\input{./Pre_text/dados_gerais.tex}
+%======================================================================
+% Palavra-Chave
+%======================================================================
+\input{Pre_text/palavras_chaves.tex}
+%=======================================================================
+% Início do documento.
+%=======================================================================
+\everymath{\displaystyle}
+\begin{document}
+\capa
+\folhaderosto
+\folhadeaprovacao 
+%=======================================================================
+%Dedicatória (opcional).
+%Agradecimentos (opcional).
+%Epígrafe (opcional).
+%=======================================================================
+\input{Pre_text/dedic_agradec_epigrafe.tex}
+%=======================================================================
+% Resumo 
+%=======================================================================
+\input{Text/resumo}
+% %=======================================================================
+% % Lista de Figuras (opcional).
+% %=======================================================================
+\listoffigures
+% %=======================================================================
+% % Lista de Tabelas (opcional).
+% %=======================================================================
+% \listoftables
+%=======================================================================
+% Lista de Abreviaturas (opcional).
+%
+% Relação alfabética das abreviaturas utilizadas no texto,
+% seguidas das palavras ou expressões grafadas por extenso.
+%=======================================================================
+%\begin{listadeabreviaturas}{seg., segs.}
+%\item[atual.] atualizado, -a
+%\item[coord.] coordenador
+%\item[seg., segs.] seguinte, -s
+%\end{listadeabreviaturas}
+
+%=======================================================================
+% Lista de Siglas (opcional).
+%=======================================================================
+\input{Pre_text/siglas.tex}
+%=======================================================================
+% Lista de Símbolos (opcional).
+%=======================================================================
+\input{Pre_text/simbolos.tex}
+%=======================================================================
+% Sumário
+%=======================================================================
+\tableofcontents
+%=======================================================================
+% Texto
+%=======================================================================
+
+\input{Text/capitulo_1.tex}
+\input{Text/capitulo_2.tex}
+\input{Text/capitulo_3.tex}
+\input{Text/capitulo_4.tex}
+\input{Text/capitulo_5.tex}
+
+%=======================================================================
+% Referências
+%=======================================================================
+\bibliography{bibliografia}
+\input{Text/anexos}
+
+\end{document}

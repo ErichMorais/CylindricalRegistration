@@ -1,0 +1,15 @@
+\chapter{Considerações finais}
+
+Neste trabalho foi proposta uma etapa de um sistema computacional responsável por inspecionar rótulos de envazados com formato essencialmente cilíndricos. Aqui, se tratou do problema a partir do ponto de vista do processamento de imagens, com o propósito de corrigir as distorções causadas pelo formato do objeto quando reproduzido no plano do sensor da câmera, bem como a formação de uma panorâmica que abrange todo o perímetro do objeto.
+
+Como o sistema proposto utiliza somente uma câmera física, emulando as outras três com translações do objeto (com passos angulares de 90$^\circ$) a fim de capturar a informação de todo o perímetro da garrafa, assume-se que o ponto no espaço ocupado pela garrafa é o mesmo nas quatro fotografias consideradas na composição da panorâmica. 
+
+As distorções provenientes ao formato do objeto (cilíndrico) são mapeadas através das equações \eqref{equacao:dist_horz} e \eqref{equacao:dist_vert} a partir da variação angular do sistema de coordenadas da imagem. O sistema negligencia distorções provenientes da lente da câmera, sendo esse um fator que pode ser implementado em trabalhos futuros. A calibração desse parâmetro permite um dimensionamento melhor da representação angular real de cada uma das fotografias, auxiliando na montagem do mosaico. Também é importante destacar que o mapeamento proposto por \cite{Lin:2013} exige uma confiança mecânica do sistema de aquisição que, apesar de ser minucioso, não é um grande problema para aplicações industriais.
+
+As compensações geométricas do sistema são realizadas através da seleção de quatro coordenadas (formando um paralelogramo) provenientes ao mapeamento, sendo estes submetidos a uma transformação geométrica projetiva, mudando seu formato para um retângulo. A realização desta operação com todos os pontos do mapa forma uma nova imagem planificada do rótulo.
+
+Por fim, as quatro imagens retificadas são submetidas ao processo de montagem do mosaico. Este, apesar de depender de um sistema mecânico robusto e confiável, se demonstrou minimamente eficiente a ponto de permitir um ponto ideal de costura aceitável para uma inspeção menos delicada.
+
+Trabalhos futuros  também podem ser realizados na direção de avaliar uma figura de mérito adequada para a  comparação de diferentes panorâmicas. Resultados preliminares indicam que as altas frequências das panorâmicas obtidas podem ser suficientes para a avaliação do correto (ou não) posicionamento do rótulo da garrafa, através da comparação com um padrão.
+
+%para incluir a delimitação automática do rótulo analisado através de uma rede neural e/ou segmentação por formas, por exemplo. Com uma calibração da câmera é possível encontrar o ponto máximo de visão alcançado, dimensionando da representação angular de cada uma das imagens com maior precisão. Além disso, há espaços para melhoria no desempenho do sistema; visando a utilização em de tempo real, poderia ser empregado no algoritmo ferramentas de computação paralela/concorrente a fim de propor um processamento mais rápido das imagens.
